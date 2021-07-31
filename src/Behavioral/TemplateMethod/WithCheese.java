@@ -1,22 +1,14 @@
 package Behavioral.TemplateMethod;
 
-public class WithCheese implements BurgerDecorator {
-    private Burger burger;
-
+public class WithCheese extends BurgerDecorator {
     public WithCheese(Burger burger) {
-        this.burger = burger;
-        addElement();
+        super(burger);
     }
 
     @Override
     public void addElement() {
         System.out.println("Preparing a Slice of Cheese.");
         BurgerUtils.sleep(1000);
-    }
-
-    @Override
-    public Burger getBurger() {
-        return this.burger;
     }
 
 }

@@ -2,17 +2,14 @@ package Behavioral.TemplateMethod;
 
 import java.util.List;
 
-public class WithMeat implements BurgerDecorator{
-    private Burger burger;
-
+public class WithMeat extends BurgerDecorator{
     public WithMeat(Burger burger) {
-        this.burger = burger;
-        addElement();
+        super(burger);
     }
 
     @Override
     public void addElement() {
-        List<Meat> meats = this.burger.getMeats();
+        List<Meat> meats = super.getBurger().getMeats();
         for (Meat m : meats) {
             if (meats.get(meats.size() - 1).equals(m)) {
                 System.out.print("Preparing 2 ");
@@ -24,10 +21,5 @@ public class WithMeat implements BurgerDecorator{
         }
         System.out.println(".");
         BurgerUtils.sleep(1000);
-    }
-
-    @Override
-    public Burger getBurger(){
-        return this.burger;
     }
 }

@@ -2,6 +2,9 @@ package Behavioral.TemplateMethod;
 
 import java.util.ArrayList;
 
+
+// Zinger Stacker consists of buns with veggies, ZINGERFILLET, SUPERCHARGED and CHILLIRELISH sauces, cheese.
+
 public class ZingerStacker extends Burger{
     ZingerStacker() {
         setMeats(new ArrayList<>(){{
