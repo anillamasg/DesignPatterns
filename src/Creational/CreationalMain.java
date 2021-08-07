@@ -1,29 +1,28 @@
 package Creational;
 
-import Creational.AbstractFactory2.Furniture;
-import Creational.AbstractFactory2.FurnitureFactory;
-import Creational.Builder.Builder;
-import Creational.Builder.Car;
-import Creational.Builder.CarManual;
-import Creational.Builder.Director;
+import Creational.Prototype.Movie;
+import Creational.Prototype.Theatre;
 
 public class CreationalMain {
-    public static void main(String[] args){
-        Car.CarBuilder builder = new Car.CarBuilder();
-        Director director = new Director(builder);
-        builder = (Car.CarBuilder) director.constructSports();
-        System.out.println(builder.getProduct().toString());
-        builder = (Car.CarBuilder) director.constructSUV();
-        System.out.println(builder.getProduct().toString());
-        System.out.println();
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Movie movie = new Movie();
+        Movie movie1 = (Movie) movie.clone();
 
-        CarManual.CarManualBuilder carManualBuilder = new CarManual.CarManualBuilder();
-        director.setBuilder(carManualBuilder);
-        director.constructSports();
-        System.out.println(carManualBuilder.getProduct().toString());
-        director.constructSUV();
-        System.out.println(carManualBuilder.getProduct().toString());
+        System.out.println(movie);
+        System.out.println(movie1);
 
+        movie.setName("Dreams");
+        movie.setReleaseDay("Friday");
+        movie.setDirectorName("Bhuwan KC");
+        movie.setTheatre(new Theatre("FCUBE"));
+
+        movie1 = (Movie) movie.clone();
+        movie1.setName("Gajalu");
+        movie1.setDirectorName("Hem Raj BC");
+        movie1.getTheatre().setLocation("QFX");
+
+        System.out.println(movie);
+        System.out.println(movie1);
     }
 }
 
@@ -48,6 +47,24 @@ public class CreationalMain {
         furniture.getChair().sitOne();
         furniture.getTable().sitTwo();
         furniture.getSofa().sitFive();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////        BUILDER DESIGN PATTERN          ///////////////////////////////////////////
+        Car.CarBuilder builder = new Car.CarBuilder();
+        Director director = new Director(builder);
+        builder = (Car.CarBuilder) director.constructSports();
+        System.out.println(builder.getProduct().toString());
+        builder = (Car.CarBuilder) director.constructSUV();
+        System.out.println(builder.getProduct().toString());
+        System.out.println();
+
+        CarManual.CarManualBuilder carManualBuilder = new CarManual.CarManualBuilder();
+        director.setBuilder(carManualBuilder);
+        director.constructSports();
+        System.out.println(carManualBuilder.getProduct().toString());
+        director.constructSUV();
+        System.out.println(carManualBuilder.getProduct().toString());
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
