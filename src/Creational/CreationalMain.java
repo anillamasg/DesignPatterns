@@ -2,14 +2,19 @@ package Creational;
 
 import Creational.LazyInitialization.College;
 import Creational.LazyInitialization.ImageFile2;
+import Creational.Multiton.Camera;
+import Creational.Multiton.CameraPosition;
 
 public class CreationalMain {
     public static void main(String[] args) {
-        ImageFile2 imageFile = new ImageFile2("anil.jpg");
-        imageFile.getImage();
+        Camera cameraFront = Camera.getInstance(CameraPosition.FRONT);
+        Camera cameraBack = Camera.getInstance(CameraPosition.BACK);
+        Camera cameraLeft = Camera.getInstance(CameraPosition.LEFT);
+        Camera cameraRight = Camera.getInstance(CameraPosition.RIGHT);
 
-        College college = new College("KIST");
-        System.out.println(college);
+        Camera cameraNew = Camera.getInstance(CameraPosition.RIGHT);
+        System.out.println(cameraNew.toString());
+
     }
 }
 
@@ -79,6 +84,16 @@ public class CreationalMain {
 
         System.out.println(movie);
         System.out.println(movie1);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////        LAZY INITIALIZATION DESIGN PATTERN          ////////////////////////////////////////
+
+        ImageFile2 imageFile = new ImageFile2("anil.jpg");
+        imageFile.getImage();
+
+        College college = new College("KIST");
+        System.out.println(college);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
