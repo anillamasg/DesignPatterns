@@ -1,0 +1,35 @@
+- One of the memory conservation techniques Java programmers find useful is lazy instantiation. With lazy instantiation, a program refrains from creating certain resources
+  until the resource is first needed -- freeing valuable memory space.
+
+- Two approaches illustrate the techniques of eager instantiation (load it in case it's needed) and lazy instantiation (wait until it's requested before you load it, as it
+  may never be needed).
+
+- There are drawbacks to both approaches: On one hand, always loading a resource potentially wastes precious memory if the resource isn't used during that session;
+  on the other hand, if it hasn't been loaded, you pay the price in terms of loading time when the resource is first required.
+
+- Consider lazy instantiation as a resource conservation policy
+  Lazy instantiation in Java falls into two categories:
+
+  Lazy class loading
+  Lazy object creation
+
+- Lazy class loading
+
+  The Java runtime has built-in lazy instantiation for classes. Classes load into memory only when they're first referenced. (They also may be loaded from a Web server via
+  HTTP first.)
+
+  MyUtils.classMethod();   //first call to a static class method
+  Vector v = new Vector(); //first call to operator new
+
+  Lazy class loading is an important feature of the Java runtime environment as it can reduce memory usage under certain circumstances. For example, if a part of a program
+  never is executed during a session, classes referenced only in that part of the program never will be loaded.
+
+- Lazy object creation
+  Lazy object creation is tightly coupled to lazy class loading. The first time you use the new keyword on a class type that previously hasn't been loaded, the Java runtime
+  will load it for you. Lazy object creation can reduce memory usage to a much greater extent than lazy class loading.
+
+- In a rather simple example, we aren't really going to gain too much. But if you consider a more complex class, which uses many other classes, which in turn use and
+  instantiate more objects recursively, the potential memory usage is more apparent.
+
+- https://www.infoworld.com/article/2077568/java-tip-67--lazy-instantiation.html
+
