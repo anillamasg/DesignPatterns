@@ -1,20 +1,31 @@
 package Creational;
 
-import Creational.LazyInitialization.College;
-import Creational.LazyInitialization.ImageFile2;
-import Creational.Multiton.Camera;
-import Creational.Multiton.CameraPosition;
+import Creational.ObjectPool.ReusablePool;
+import Creational.ObjectPool.ReusableResource;
 
 public class CreationalMain {
     public static void main(String[] args) {
-        Camera cameraFront = Camera.getInstance(CameraPosition.FRONT);
-        Camera cameraBack = Camera.getInstance(CameraPosition.BACK);
-        Camera cameraLeft = Camera.getInstance(CameraPosition.LEFT);
-        Camera cameraRight = Camera.getInstance(CameraPosition.RIGHT);
+        ReusablePool pool = ReusablePool.getInstance();
+        ReusableResource resource = null;
+        ReusableResource tempResource = null;
 
-        Camera cameraNew = Camera.getInstance(CameraPosition.RIGHT);
-        System.out.println(cameraNew.toString());
+        // 10 successful and 1 last unsuccessful attempts
+        for(int i=0; i<=10; i++){
+            resource = pool.acquireReusableResource();
+            if (resource==null){
+                System.out.println("OPERATION NOT SUCCESSFUL.");
+                continue;
+//                System.exit(1);
+            }
+            resource.doSomethingImportant();
+            tempResource = resource;
+//          pool.releaseReusableResource(resource);
+        }
 
+        // successful attempt again.
+        pool.releaseReusableResource(tempResource);
+        resource = pool.acquireReusableResource();
+        resource.doSomethingImportant();
     }
 }
 
@@ -94,6 +105,18 @@ public class CreationalMain {
 
         College college = new College("KIST");
         System.out.println(college);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////        MULTITON DESIGN PATTERN          ////////////////////////////////////////
+
+        Camera cameraFront = Camera.getInstance(CameraPosition.FRONT);
+        Camera cameraBack = Camera.getInstance(CameraPosition.BACK);
+        Camera cameraLeft = Camera.getInstance(CameraPosition.LEFT);
+        Camera cameraRight = Camera.getInstance(CameraPosition.RIGHT);
+
+        Camera cameraNew = Camera.getInstance(CameraPosition.RIGHT);
+        System.out.println(cameraNew.toString());
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
