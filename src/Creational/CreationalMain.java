@@ -1,12 +1,14 @@
 package Creational;
 
-import Creational.ObjectPool.ReusablePool;
-import Creational.ObjectPool.ReusableResource;
+import Creational.ResourceAcquisitionIsInitialization.ReusablePool;
+import Creational.ResourceAcquisitionIsInitialization.ReusableResource;
+
+import java.io.IOException;
 
 public class CreationalMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ReusablePool pool = ReusablePool.getInstance();
-        ReusableResource resource = null;
+        ReusableResource resource;
         ReusableResource tempResource = null;
 
         // 10 successful and 1 last unsuccessful attempts
