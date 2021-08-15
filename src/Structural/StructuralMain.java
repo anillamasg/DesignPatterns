@@ -1,29 +1,32 @@
 package Structural;
 
-import Structural.Bridge.*;
+import Structural.Composite.*;
 
 public class StructuralMain {
     public static void main(String[] args) {
-        Device device = new Radio();
-        RemoteControl remote = new ClassicRemoteControl(device);
-        remote.togglePower();
-        remote.volumeUp();
-        remote.volumeDown();
-        remote.channelUp();
-        remote.channelDown();
-        remote.togglePower();
+        ProjectSalary pa = new ProjectSalary();
+        FrontSalary front = new FrontSalary();
+        BackSalary back = new BackSalary();
+        EmployeeSalary e1 = new EmployeeSalary();
+        EmployeeSalary e2 = new EmployeeSalary();
+        EmployeeSalary e3 = new EmployeeSalary();
+        EmployeeSalary e4 = new EmployeeSalary();
+        EmployeeSalary e5 = new EmployeeSalary();
 
-        System.out.println("\n");
+        front.addEmployeeSalary(e1);
+        front.addEmployeeSalary(e2);
+        front.addEmployeeSalary(e3);
 
-        device = new Tv();
-        remote = new AdvancedRemoteControl(device);
-        remote.togglePower();
-        remote.volumeUp();
+        back.addEmployeeSalary(e4);
+        back.addEmployeeSalary(e5);
 
-        ((AdvancedRemoteControl) remote).brightnessUp();
-        ((AdvancedRemoteControl) remote).brightnessDown();
-        ((AdvancedRemoteControl) remote).muteVolume();
+        pa.addEmployeeSalary(front);
+        pa.addEmployeeSalary(back);
 
+        System.out.println("Employee1 salary: "+e1.getTotalSalary());
+        System.out.println("Front salary: "+front.getTotalSalary());
+        System.out.println("Back salary: "+back.getTotalSalary());
+        System.out.println("Total project salary: "+pa.getTotalSalary());
     }
 }
 
@@ -37,6 +40,30 @@ public class StructuralMain {
     samsung.charge(new SamsungCharger());
 
     iphone.charge(new IphoneChargerAdapter(new SamsungCharger()));
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////          BRIDGE DESIGN PATTERN          ////////////////////////////////////////
+
+    Device device = new Radio();
+    RemoteControl remote = new ClassicRemoteControl(device);
+    remote.togglePower();
+    remote.volumeUp();
+    remote.volumeDown();
+    remote.channelUp();
+    remote.channelDown();
+    remote.togglePower();
+
+    System.out.println("\n");
+
+    device = new Tv();
+    remote = new AdvancedRemoteControl(device);
+    remote.togglePower();
+    remote.volumeUp();
+
+    ((AdvancedRemoteControl) remote).brightnessUp();
+    ((AdvancedRemoteControl) remote).brightnessDown();
+    ((AdvancedRemoteControl) remote).muteVolume();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
