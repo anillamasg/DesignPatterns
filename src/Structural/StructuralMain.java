@@ -1,32 +1,14 @@
 package Structural;
 
-import Structural.Composite.*;
+import Structural.Decorator.*;
 
 public class StructuralMain {
     public static void main(String[] args) {
-        ProjectSalary pa = new ProjectSalary();
-        FrontSalary front = new FrontSalary();
-        BackSalary back = new BackSalary();
-        EmployeeSalary e1 = new EmployeeSalary();
-        EmployeeSalary e2 = new EmployeeSalary();
-        EmployeeSalary e3 = new EmployeeSalary();
-        EmployeeSalary e4 = new EmployeeSalary();
-        EmployeeSalary e5 = new EmployeeSalary();
+        Coffee coffee = new Espresso();
+        coffee = new AlternativeMilkDecorator(coffee);
+        coffee = new SyrupDecorator(coffee);
 
-        front.addEmployeeSalary(e1);
-        front.addEmployeeSalary(e2);
-        front.addEmployeeSalary(e3);
-
-        back.addEmployeeSalary(e4);
-        back.addEmployeeSalary(e5);
-
-        pa.addEmployeeSalary(front);
-        pa.addEmployeeSalary(back);
-
-        System.out.println("Employee1 salary: "+e1.getTotalSalary());
-        System.out.println("Front salary: "+front.getTotalSalary());
-        System.out.println("Back salary: "+back.getTotalSalary());
-        System.out.println("Total project salary: "+pa.getTotalSalary());
+        System.out.println("Price of your coffee: "+coffee.getPrice());
     }
 }
 
@@ -67,5 +49,32 @@ public class StructuralMain {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////          COMPOSITE DESIGN PATTERN          ////////////////////////////////////////
+
+    ProjectSalary pa = new ProjectSalary();
+    FrontSalary front = new FrontSalary();
+    BackSalary back = new BackSalary();
+    EmployeeSalary e1 = new EmployeeSalary();
+    EmployeeSalary e2 = new EmployeeSalary();
+    EmployeeSalary e3 = new EmployeeSalary();
+    EmployeeSalary e4 = new EmployeeSalary();
+    EmployeeSalary e5 = new EmployeeSalary();
+
+    front.addEmployeeSalary(e1);
+    front.addEmployeeSalary(e2);
+    front.addEmployeeSalary(e3);
+
+    back.addEmployeeSalary(e4);
+    back.addEmployeeSalary(e5);
+
+    pa.addEmployeeSalary(front);
+    pa.addEmployeeSalary(back);
+
+    System.out.println("Employee1 salary: "+e1.getTotalSalary());
+    System.out.println("Front salary: "+front.getTotalSalary());
+    System.out.println("Back salary: "+back.getTotalSalary());
+    System.out.println("Total project salary: "+pa.getTotalSalary());
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 */
