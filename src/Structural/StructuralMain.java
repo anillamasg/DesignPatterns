@@ -1,15 +1,44 @@
 package Structural;
 
-import Structural.Adapter.*;
+import Structural.Bridge.*;
 
 public class StructuralMain {
     public static void main(String[] args) {
-        Iphone iphone = new Iphone();
-        Samsung samsung = new Samsung();
+        Device device = new Radio();
+        RemoteControl remote = new ClassicRemoteControl(device);
+        remote.togglePower();
+        remote.volumeUp();
+        remote.volumeDown();
+        remote.channelUp();
+        remote.channelDown();
+        remote.togglePower();
 
-        iphone.charge(new IphoneCharger());
-        samsung.charge(new SamsungCharger());
+        System.out.println("\n");
 
-        iphone.charge(new IphoneChargerAdapter(new SamsungCharger()));
+        device = new Tv();
+        remote = new AdvancedRemoteControl(device);
+        remote.togglePower();
+        remote.volumeUp();
+
+        ((AdvancedRemoteControl) remote).brightnessUp();
+        ((AdvancedRemoteControl) remote).brightnessDown();
+        ((AdvancedRemoteControl) remote).muteVolume();
+
     }
 }
+
+/*
+//////////////////////////////////////          ADAPTER DESIGN PATTERN          ////////////////////////////////////////
+
+    Iphone iphone = new Iphone();
+    Samsung samsung = new Samsung();
+
+    iphone.charge(new IphoneCharger());
+    samsung.charge(new SamsungCharger());
+
+    iphone.charge(new IphoneChargerAdapter(new SamsungCharger()));
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+*/
